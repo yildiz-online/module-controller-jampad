@@ -26,17 +26,85 @@
 
 package be.yildizgames.module.controller;
 
+/**
+ * Notify when the controller is updated.
+ * @author Grégory Van den Borre
+ */
 public interface ControllerListener {
 
-    void controllerConnected();
+    /**
+     * Triggered when the controller gets connected.
+     */
+    default void controllerConnected() {}
 
-    void controllerDisconnected();
+    /**
+     * Triggered when the controller gets disconnected.
+     */
+    default void controllerDisconnected() {}
 
-    void controllerPress1();
+    /**
+     * Triggered when the controller button 1 is pressed.
+     */
+    default void controllerPress1() {}
 
-    void controllerPress2();
+    /**
+     * Triggered when the controller button 1 is released.
+     */
+    default void controllerRelease1() {}
 
-    void controllerPress3();
+    /**
+     * Triggered when the controller button 2 is pressed.
+     */
+    default void controllerPress2() {}
 
-    void controllerPress4();
+    /**
+     * Triggered when the controller button 2 is released.
+     */
+    default void controllerRelease2() {}
+
+    /**
+     * Triggered when the controller button 3 is pressed.
+     */
+    default void controllerPress3() {}
+
+    /**
+     * Triggered when the controller button 3 is released.
+     */
+    default void controllerRelease3() {}
+
+    /**
+     * Triggered when the controller button 4 is pressed.
+     */
+    default void controllerPress4() {}
+
+    /**
+     * Triggered when the controller button 4 is released.
+     */
+    default void controllerRelease4() {}
+
+    /**
+     * Triggered when the controller button start is pressed.
+     */
+    default void controllerPressStart() {}
+
+    /**
+     * Triggered when the controller button start is released.
+     */
+    default void controllerReleaseStart() {}
+
+    default void controllerPressLeft() {}
+
+    default void controllerReleaseLeft() {}
+
+    default void controllerPressUp() {}
+
+    default void controllerReleaseUp() {}
+
+    default void controllerPressRight() {}
+
+    default void controllerReleaseRight() {}
+
+    default void controllerPressDown() {}
+
+    default void controllerReleaseDown() {}
 }

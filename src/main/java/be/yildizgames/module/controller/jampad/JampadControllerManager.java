@@ -26,21 +26,19 @@
 
 package be.yildizgames.module.controller.jampad;
 
-import be.yildizgames.module.controller.ControllerListener;
-import be.yildizgames.module.controller.ControllerLatestState;
+import be.yildizgames.module.controller.internal.ControllerCurrentStateContainer;
 import com.studiohartman.jamepad.ControllerState;
 import com.studiohartman.jamepad.ControllerManager;
 
 public class JampadControllerManager {
 
-    private final Thread thread = new Thread(new ControllerRunner());
+    private final Thread thread = new Thread(new ControllerRunner(0));
 
     private ControllerManager controllers;
 
     public void initialize() {
-       this.controllers = new ControllerManager();
+        this.controllers = new ControllerManager();
         controllers.initSDLGamepad();
-
     }
 
     public final void start() {
@@ -49,30 +47,56 @@ public class JampadControllerManager {
 
     private class ControllerRunner implements Runnable {
 
+        private final int id;
+
+        /**
+         * Flag to use or not the controller.
+         */
+        private boolean use;
+
+        private final ControllerCurrentStateContainer stateContainer = new ControllerCurrentStateContainer();
+
+        private ControllerRunner(final int id) {
+            super();
+            this.id = id;
+        }
+
         @Override
         public void run() {
-            //TODO if the controller is not connected, sleep during some time before checking for it again
             while(true) {
-                ControllerState currState = controllers.getState(0);
-              //  controllerState.setConnected(currState.isConnected);
-                if(currState.isConnected) {
-                    if(currState.a) {
-
-                    }
-                    if(currState.b) {
-
-                    }
-                    if(currState.x) {
-
-                    }
-                    if(currState.y) {
-
+                if(!use && !updateIfConnected()) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-
             }
         }
+
+        private boolean updateIfConnected() {
+            ControllerState currState = controllers.getState(id);
+            this.stateContainer.connected(currState.isConnected);
+            if(currState.isConnected) {
+                this.stateContainer.button1(currState.a);
+                this.stateContainer.button2(currState.b);
+                this.stateContainer.button3(currState.x);
+                this.stateContainer.button4(currState.y);
+
+                this.stateContainer.buttonStart(currState.start);
+
+                this.stateContainer.padLeft(currState.dpadLeft);
+                this.stateContainer.padRight(currState.dpadRight);
+                this.stateContainer.padUp(currState.dpadUp);
+                this.stateContainer.padDown(currState.dpadDown);
+
+                return true;
+            }
+            return false;
+        }
     }
+
+}
 
 
 }

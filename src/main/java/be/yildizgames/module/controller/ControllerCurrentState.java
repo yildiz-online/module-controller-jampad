@@ -26,5 +26,15 @@
 
 package be.yildizgames.module.controller;
 
-public interface Controller {
+public interface ControllerCurrentState {
+
+    void addListener(ControllerListener l);
+
+    boolean isPadUpPressed();
+
+    boolean isPadDownPressed();
+
+    boolean isPadLeftPressed();
+
+    boolean isPadRightPressed();
 }
