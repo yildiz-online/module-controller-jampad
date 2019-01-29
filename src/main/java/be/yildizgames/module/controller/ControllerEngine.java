@@ -26,25 +26,34 @@
 
 package be.yildizgames.module.controller;
 
-public interface ControllerCurrentState {
+/**
+ * Manage the controllers.
+ * @author Grégory Van den Borre
+ */
+public interface ControllerEngine {
 
-    boolean isButton1Pressed();
+    /**
+     * Provide the 1st controller.
+     * @return The first assigned controller.
+     */
+    Controller getController1();
 
-    boolean isButton2Pressed();
+    /**
+     * Provide the 2nd controller.
+     * @return The second assigned controller.
+     */
+    Controller getController2();
 
-    boolean isButton3Pressed();
+    /**
+     * Provide the 3rd controller.
+     * @return The third assigned controller.
+     */
+    Controller getController3();
 
-    boolean isButton4Pressed();
+    /**
+     * Provide the 4th controller.
+     * @return The fourth assigned controller.
+     */
+    Controller getController4();
 
-    boolean isButtonStartPressed();
-
-    boolean isButtonSelectPressed();
-
-    boolean isPadUpPressed();
-
-    boolean isPadDownPressed();
-
-    boolean isPadLeftPressed();
-
-    boolean isPadRightPressed();
 }

@@ -26,25 +26,46 @@
 
 package be.yildizgames.module.controller;
 
-public interface ControllerCurrentState {
+/**
+ * Controller.
+ * @author Grégory Van den Borre
+ */
+public interface Controller {
 
-    boolean isButton1Pressed();
+    /**
+     * Provide the controller current state.
+     * The state can be kept once retrieved, it will always be up to date.
+     * @return The state.
+     */
+    ControllerCurrentState getState();
 
-    boolean isButton2Pressed();
+    /**
+     * register a listener to receive event from the controller.
+     * @param l Controller listener.
+     */
+    void addListener(ControllerListener l);
 
-    boolean isButton3Pressed();
+    /**
+     * Use this controller.
+     */
+    void use();
 
-    boolean isButton4Pressed();
+    /**
+     * Map the buttons if a change is required.
+     * @param mapper Button mapper.
+     */
+    void map(ControllerMapper mapper);
 
-    boolean isButtonStartPressed();
+    /**
+     * Check if the controller is in use.
+     * @return True if the controller is used, false otherwise.
+     */
+    boolean isUsed();
 
-    boolean isButtonSelectPressed();
+    /**
+     * Check if the controller is currently plugged in.
+     * @return True if the controoler is connected, false otherwise.
+     */
+    boolean isConnected();
 
-    boolean isPadUpPressed();
-
-    boolean isPadDownPressed();
-
-    boolean isPadLeftPressed();
-
-    boolean isPadRightPressed();
 }

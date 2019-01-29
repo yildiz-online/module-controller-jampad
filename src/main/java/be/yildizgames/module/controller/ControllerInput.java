@@ -26,25 +26,7 @@
 
 package be.yildizgames.module.controller;
 
-public interface ControllerCurrentState {
+public enum ControllerInput {
 
-    boolean isButton1Pressed();
-
-    boolean isButton2Pressed();
-
-    boolean isButton3Pressed();
-
-    boolean isButton4Pressed();
-
-    boolean isButtonStartPressed();
-
-    boolean isButtonSelectPressed();
-
-    boolean isPadUpPressed();
-
-    boolean isPadDownPressed();
-
-    boolean isPadLeftPressed();
-
-    boolean isPadRightPressed();
+    BUTTON1, BUTTON2, BUTTON3, BUTTON4, START, SELECT
 }

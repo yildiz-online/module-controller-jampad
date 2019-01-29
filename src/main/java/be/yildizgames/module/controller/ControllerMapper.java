@@ -30,4 +30,28 @@ package be.yildizgames.module.controller;
  * Map the keys to an action.
  */
 public interface ControllerMapper {
+
+    default ControllerInput button1() {
+        return ControllerInput.BUTTON1;
+    }
+
+    default ControllerInput button2() {
+        return ControllerInput.BUTTON2;
+    }
+
+    default ControllerInput button3() {
+        return ControllerInput.BUTTON3;
+    }
+
+    default ControllerInput button4() {
+        return ControllerInput.BUTTON4;
+    }
+
+    default ControllerInput buttonStart() {
+        return ControllerInput.START;
+    }
+
+    default ControllerInput buttonSelect() {
+        return ControllerInput.SELECT;
+    }
 }

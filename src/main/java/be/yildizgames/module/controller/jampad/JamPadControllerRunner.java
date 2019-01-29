@@ -26,43 +26,75 @@
 
 package be.yildizgames.module.controller.jampad;
 
-import be.yildizgames.module.controller.Controller;
-import be.yildizgames.module.controller.ControllerEngine;
-import com.studiohartman.jamepad.ControllerState;
-import com.studiohartman.jamepad.ControllerManager;
+import be.yildizgames.module.controller.internal.ControllerRunner;
 
-public class JampadControllerManager implements ControllerEngine {
+class JamPadControllerRunner extends ControllerRunner {
 
-    private final Controller[] controllers = new JamPadControllerRunner[4];
+    private final int id;
+    private ControllerState currState;
 
-    private final ControllerManager controllerManager;
-
-    public JampadControllerManager() {
+    JamPadControllerRunner(final int id, ControllerManager controllerManager) {
         super();
-        this.controllerManager = new ControllerManager();
-        controllerManager.initSDLGamepad();
-        for(int i = 0; i < controllers.length) {
-            controllers[i] = new JamPadControllerRunner(i, controllerManager);
-        }
+        this.id = id;
+        this.currState = controllerManager.getState(this.id);
     }
 
     @Override
-    public final Controller getController1() {
-        return controllers[0];
+    protected boolean button1() {
+        return currState.a;
     }
 
     @Override
-    public final Controller getController2() {
-        return controllers[1];
+    protected boolean button2() {
+        return currState.b;
     }
 
     @Override
-    public final Controller getController3() {
-        return controllers[2];
+    protected boolean button3() {
+        return currState.x;
     }
 
     @Override
-    public final Controller getController4() {
-        return controllers[3];
+    protected boolean button4() {
+        return currState.y;
     }
+
+    @Override
+    protected boolean buttonStart() {
+        return false;
+    }
+
+    @Override
+    protected boolean buttonSelect() {
+        return false;
+    }
+
+    @Override
+    protected boolean down() {
+        return currState.dpadDown;
+    }
+
+    @Override
+    protected boolean up() {
+        return currState.dpadUp;
+    }
+
+    @Override
+    protected boolean right() {
+        return currState.dpadRight;
+    }
+
+    @Override
+    protected boolean left() {
+        return currState.dpadLeft;
+    }
+
+    @Override
+    public boolean isConnected() {
+        this.currState = controllers.getState(id);
+        return currState.isConnected;
+    }
+
+}
+
 }

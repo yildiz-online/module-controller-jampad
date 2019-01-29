@@ -92,19 +92,53 @@ public interface ControllerListener {
      */
     default void controllerReleaseStart() {}
 
+    /**
+     * Triggered when the controller button select is pressed.
+     */
+    default void controllerPressSelect() {}
+
+    /**
+     * Triggered when the controller button select is released.
+     */
+    default void controllerReleaseSelect() {}
+
+    /**
+     * Triggered when the controller dpad left is pressed.
+     */
     default void controllerPressLeft() {}
 
+    /**
+     * Triggered when the controller dpad left is released.
+     */
     default void controllerReleaseLeft() {}
 
+    /**
+     * Triggered when the controller dpad up is pressed.
+     */
     default void controllerPressUp() {}
 
+    /**
+     * Triggered when the controller dpad up is released.
+     */
     default void controllerReleaseUp() {}
 
+    /**
+     * Triggered when the controller dpad right is pressed.
+     */
     default void controllerPressRight() {}
 
+    /**
+     * Triggered when the controller dpad right is released.
+     */
     default void controllerReleaseRight() {}
 
+    /**
+     * Triggered when the controller dpad down is pressed.
+     */
     default void controllerPressDown() {}
 
+    /**
+     * Triggered when the controller dpad down is released.
+     */
     default void controllerReleaseDown() {}
 }

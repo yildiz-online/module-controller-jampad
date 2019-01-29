@@ -24,27 +24,9 @@
  *
  */
 
-package be.yildizgames.module.controller;
+package be.yildizgames.module.controller.internal;
 
-public interface ControllerCurrentState {
+import be.yildizgames.module.controller.ControllerMapper;
 
-    boolean isButton1Pressed();
-
-    boolean isButton2Pressed();
-
-    boolean isButton3Pressed();
-
-    boolean isButton4Pressed();
-
-    boolean isButtonStartPressed();
-
-    boolean isButtonSelectPressed();
-
-    boolean isPadUpPressed();
-
-    boolean isPadDownPressed();
-
-    boolean isPadLeftPressed();
-
-    boolean isPadRightPressed();
+class DefaultControllerMapper implements ControllerMapper {
 }

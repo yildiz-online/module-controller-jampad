@@ -27,12 +27,13 @@
 package be.yildizgames.module.controller.internal;
 
 import be.yildizgames.module.controller.ControllerCurrentState;
+import be.yildizgames.module.controller.ControllerInput;
 import be.yildizgames.module.controller.ControllerListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControllerCurrentStateContainer implements ControllerCurrentState {
+class ControllerCurrentStateContainer implements ControllerCurrentState {
 
     private final List<ControllerListener> listeners = new ArrayList<>();
 
@@ -134,79 +135,38 @@ public class ControllerCurrentStateContainer implements ControllerCurrentState {
 
     private boolean button4;
 
-    public final void connected(boolean connected) {
-        if(this.connected != connected) {
-            this.connected = connected;
-            this.listeners.forEach(connected ? ControllerListener::controllerConnected : ControllerListener::controllerDisconnected);
-        }
-    }
-
-    public final void buttonStart(boolean active) {
-        if(this.start != active) {
-            this.start = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressStart : ControllerListener::controllerReleaseStart);
-        }
-    }
-
-    public final void button1(boolean active) {
-        if(this.button1 != active) {
-            this.button1 = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPress1 : ControllerListener::controllerRelease1);
-        }
-    }
-
-    public final void button2(boolean active) {
-        if(this.button2 != active) {
-            this.button2 = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPress2 : ControllerListener::controllerRelease2);
-        }
-    }
-
-    public final void button3(boolean active) {
-        if(this.button3 != active) {
-            this.button3 = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPress3 : ControllerListener::controllerRelease3);
-        }
-    }
-
-    public final void button4(boolean active) {
-        if(this.button4 != active) {
-            this.button4 = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPress4 : ControllerListener::controllerRelease4);
-        }
-    }
-
-    public final void padLeft(boolean active) {
-        if(this.padLeft != active) {
-            this.padLeft = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressLeft : ControllerListener::controllerReleaseLeft);
-        }
-    }
-
-    public final void padRight(boolean active) {
-        if(this.padRight != active) {
-            this.padRight = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressRight : ControllerListener::controllerReleaseRight);
-        }
-    }
-
-    public final void padUp(boolean active) {
-        if(this.padUp != active) {
-            this.padUp = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressUp : ControllerListener::controllerReleaseUp);
-        }
-    }
-
-    public final void padDown(boolean active) {
-        if(this.padDown != active) {
-            this.padDown = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressDown : ControllerListener::controllerReleaseDown);
-        }
+    ControllerCurrentStateContainer() {
+        super();
     }
 
     @Override
-    public final void addListener(ControllerListener l) {
-        this.listeners.add(l);
+    public final boolean isButton1Pressed() {
+        return this.button1;
+    }
+
+    @Override
+    public final boolean isButton2Pressed() {
+        return this.button2;
+    }
+
+    @Override
+    public final boolean isButton3Pressed() {
+        return this.button3;
+    }
+
+    @Override
+    public final boolean isButton4Pressed() {
+        return this.button4;
+    }
+
+    @Override
+    public final boolean isButtonStartPressed() {
+        return this.start;
+    }
+
+    @Override
+    public final boolean isButtonSelectPressed() {
+        return this.back;
     }
 
     @Override
@@ -227,5 +187,104 @@ public class ControllerCurrentStateContainer implements ControllerCurrentState {
     @Override
     public final boolean isPadRightPressed() {
         return this.padRight;
+    }
+
+    final void connected(boolean connected) {
+        if(this.connected != connected) {
+            this.connected = connected;
+            this.listeners.forEach(connected ? ControllerListener::controllerConnected : ControllerListener::controllerDisconnected);
+        }
+    }
+
+    final void button(ControllerInput button, boolean active) {
+        switch (button) {
+            case START: this.buttonStart(active);
+                break;
+            case SELECT: this.buttonSelect(active);
+                break;
+            case BUTTON1: this.button1(active);
+                break;
+            case BUTTON2: this.button2(active);
+                break;
+            case BUTTON3: this.button3(active);
+                break;
+            case BUTTON4: this.button4(active);
+                break;
+            default: break;
+        }
+    }
+
+    final void padLeft(boolean active) {
+        if(this.padLeft != active) {
+            this.padLeft = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressLeft : ControllerListener::controllerReleaseLeft);
+        }
+    }
+
+    final void padRight(boolean active) {
+        if(this.padRight != active) {
+            this.padRight = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressRight : ControllerListener::controllerReleaseRight);
+        }
+    }
+
+    final void padUp(boolean active) {
+        if(this.padUp != active) {
+            this.padUp = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressUp : ControllerListener::controllerReleaseUp);
+        }
+    }
+
+    final void padDown(boolean active) {
+        if(this.padDown != active) {
+            this.padDown = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressDown : ControllerListener::controllerReleaseDown);
+        }
+    }
+
+    final void addListener(ControllerListener l) {
+        this.listeners.add(l);
+    }
+
+    private void buttonStart(boolean active) {
+        if(this.start != active) {
+            this.start = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressStart : ControllerListener::controllerReleaseStart);
+        }
+    }
+
+    private void buttonSelect(boolean active) {
+        if(this.back != active) {
+            this.back = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressSelect : ControllerListener::controllerReleaseSelect);
+        }
+    }
+
+    private void button1(boolean active) {
+        if(this.button1 != active) {
+            this.button1 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPress1 : ControllerListener::controllerRelease1);
+        }
+    }
+
+    private void button2(boolean active) {
+        if(this.button2 != active) {
+            this.button2 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPress2 : ControllerListener::controllerRelease2);
+        }
+    }
+
+    private void button3(boolean active) {
+        if(this.button3 != active) {
+            this.button3 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPress3 : ControllerListener::controllerRelease3);
+        }
+    }
+
+    private void button4(boolean active) {
+        if(this.button4 != active) {
+            this.button4 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPress4 : ControllerListener::controllerRelease4);
+        }
     }
 }
