@@ -100,7 +100,4 @@ class JamPadControllerRunner extends ControllerRunner {
         this.currState = this.controllerManager.getState(id);
         return currState.isConnected;
     }
-
-}
-
 }
