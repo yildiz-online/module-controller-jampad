@@ -28,7 +28,6 @@ package be.yildizgames.module.controller.jampad;
 
 import be.yildizgames.module.controller.Controller;
 import be.yildizgames.module.controller.ControllerEngine;
-import com.studiohartman.jamepad.ControllerState;
 import com.studiohartman.jamepad.ControllerManager;
 
 public class JampadControllerManager implements ControllerEngine {
@@ -40,8 +39,8 @@ public class JampadControllerManager implements ControllerEngine {
     public JampadControllerManager() {
         super();
         this.controllerManager = new ControllerManager();
-        controllerManager.initSDLGamepad();
-        for(int i = 0; i < controllers.length) {
+        this.controllerManager.initSDLGamepad();
+        for(int i = 0; i < controllers.length; i++) {
             controllers[i] = new JamPadControllerRunner(i, controllerManager);
         }
     }

@@ -27,15 +27,21 @@
 package be.yildizgames.module.controller.jampad;
 
 import be.yildizgames.module.controller.internal.ControllerRunner;
+import com.studiohartman.jamepad.ControllerManager;
+import com.studiohartman.jamepad.ControllerState;
 
 class JamPadControllerRunner extends ControllerRunner {
 
     private final int id;
+
+    private final ControllerManager controllerManager;
+
     private ControllerState currState;
 
     JamPadControllerRunner(final int id, ControllerManager controllerManager) {
         super();
         this.id = id;
+        this.controllerManager = controllerManager;
         this.currState = controllerManager.getState(this.id);
     }
 
@@ -91,7 +97,7 @@ class JamPadControllerRunner extends ControllerRunner {
 
     @Override
     public boolean isConnected() {
-        this.currState = controllers.getState(id);
+        this.currState = this.controllerManager.getState(id);
         return currState.isConnected;
     }
 
