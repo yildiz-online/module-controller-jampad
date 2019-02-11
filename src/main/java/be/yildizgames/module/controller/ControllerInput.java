@@ -26,7 +26,39 @@
 
 package be.yildizgames.module.controller;
 
+/**
+ * Possible input on the controller.
+ * @author Grégory Van den Borre
+ */
 public enum ControllerInput {
 
-    BUTTON1, BUTTON2, BUTTON3, BUTTON4, START, SELECT
+    /**
+     * Button 1.
+     */
+    BUTTON1,
+
+    /**
+     * Button 2.
+     */
+    BUTTON2,
+
+    /**
+     * Button 3.
+     */
+    BUTTON3,
+
+    /**
+     * Button 4.
+     */
+    BUTTON4,
+
+    /**
+     * Button start.
+     */
+    START,
+
+    /**
+     * Button select.
+     */
+    SELECT
 }

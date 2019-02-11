@@ -30,8 +30,12 @@ import be.yildizgames.module.controller.Controller;
 import be.yildizgames.module.controller.ControllerCurrentState;
 import be.yildizgames.module.controller.ControllerListener;
 import be.yildizgames.module.controller.ControllerMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class ControllerRunner implements Runnable, Controller {
+
+    private final Logger logger = LoggerFactory.getLogger(ControllerRunner.class);
 
     private final Thread thread;
 
@@ -82,29 +86,71 @@ public abstract class ControllerRunner implements Runnable, Controller {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    this.logger.warn("Interruption", e);
+                    Thread.currentThread().interrupt();
                 }
             }
         }
     }
+
+    /**
+     * Get the status of the dpad down button.
+     * @return true if the dpad down is pressed, false otherwise.
+     */
     protected abstract boolean down();
 
+    /**
+     * Get the status of the dpad up button.
+     * @return true if the dpad up is pressed, false otherwise.
+     */
     protected abstract boolean up();
 
+    /**
+     * Get the status of the dpad right button.
+     * @return true if the dpad right is pressed, false otherwise.
+     */
     protected abstract boolean right();
 
+    /**
+     * Get the status of the dpad left button.
+     * @return true if the dpad left is pressed, false otherwise.
+     */
     protected abstract boolean left();
 
+    /**
+     * Get the status of the button 1.
+     * @return true if the button 1 is pressed, false otherwise.
+     */
     protected abstract boolean button1();
 
+    /**
+     * Get the status of the button 2.
+     * @return true if the button 2 is pressed, false otherwise.
+     */
     protected abstract boolean button2();
 
+    /**
+     * Get the status of the button 3.
+     * @return true if the button 3 is pressed, false otherwise.
+     */
     protected abstract boolean button3();
 
+    /**
+     * Get the status of the button 4.
+     * @return true if the button 4 is pressed, false otherwise.
+     */
     protected abstract boolean button4();
 
+    /**
+     * Get the status of the button start.
+     * @return true if the button start is pressed, false otherwise.
+     */
     protected abstract boolean buttonStart();
 
+    /**
+     * Get the status of the button select.
+     * @return true if the button select is pressed, false otherwise.
+     */
     protected abstract boolean buttonSelect();
 
     private boolean updateIfConnected() {
@@ -123,9 +169,7 @@ public abstract class ControllerRunner implements Runnable, Controller {
             this.stateContainer.padRight(right());
             this.stateContainer.padUp(up());
             this.stateContainer.padDown(down());
-
-            return true;
         }
-        return false;
+        return connected;
     }
 }
