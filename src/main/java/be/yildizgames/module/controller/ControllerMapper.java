@@ -28,6 +28,8 @@ package be.yildizgames.module.controller;
 
 /**
  * Map the keys to an action.
+ *
+ * @author Gregory Van den Borre
  */
 public interface ControllerMapper {
 

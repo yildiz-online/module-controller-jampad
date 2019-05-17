@@ -33,6 +33,9 @@ import be.yildizgames.module.controller.ControllerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author Gregory Van den Borre
+ */
 public abstract class ControllerRunner implements Runnable, Controller {
 
     private final Logger logger = LoggerFactory.getLogger(ControllerRunner.class);

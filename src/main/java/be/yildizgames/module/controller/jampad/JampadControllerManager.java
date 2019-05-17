@@ -30,6 +30,9 @@ import be.yildizgames.module.controller.Controller;
 import be.yildizgames.module.controller.ControllerEngine;
 import com.studiohartman.jamepad.ControllerManager;
 
+/**
+ * @author Gregory Van den Borre
+ */
 public class JampadControllerManager implements ControllerEngine {
 
     private final Controller[] controllers = new JamPadControllerRunner[4];

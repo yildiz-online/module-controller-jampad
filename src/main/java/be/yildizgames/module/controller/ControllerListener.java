@@ -28,6 +28,7 @@ package be.yildizgames.module.controller;
 
 /**
  * Notify when the controller is updated.
+ *
  * @author Grégory Van den Borre
  */
 public interface ControllerListener {

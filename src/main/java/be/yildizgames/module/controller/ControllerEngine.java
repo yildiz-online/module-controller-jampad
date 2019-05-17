@@ -28,6 +28,7 @@ package be.yildizgames.module.controller;
 
 /**
  * Manage the controllers.
+ *
  * @author Grégory Van den Borre
  */
 public interface ControllerEngine {

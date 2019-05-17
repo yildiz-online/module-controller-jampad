@@ -33,6 +33,9 @@ import be.yildizgames.module.controller.ControllerListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Gregory Van den Borre
+ */
 class ControllerCurrentStateContainer implements ControllerCurrentState {
 
     private final List<ControllerListener> listeners = new ArrayList<>();

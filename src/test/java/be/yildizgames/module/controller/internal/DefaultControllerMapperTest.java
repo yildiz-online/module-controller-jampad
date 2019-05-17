@@ -43,5 +43,4 @@ public class DefaultControllerMapperTest {
         Assertions.assertEquals(ControllerInput.START, mapper.buttonStart());
         Assertions.assertEquals(ControllerInput.SELECT, mapper.buttonSelect());
     }
-
 }

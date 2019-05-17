@@ -28,6 +28,7 @@ package be.yildizgames.module.controller;
 
 /**
  * Possible input on the controller.
+ *
  * @author Grégory Van den Borre
  */
 public enum ControllerInput {

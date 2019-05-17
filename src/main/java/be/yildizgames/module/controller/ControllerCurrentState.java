@@ -28,6 +28,7 @@ package be.yildizgames.module.controller;
 
 /**
  * Provide the controller current state, this object is internally mutable, so there is no need of a new instance to have the latest state.
+ *
  * @author Grégory Van den Borre
  */
 public interface ControllerCurrentState {

@@ -30,6 +30,9 @@ import be.yildizgames.module.controller.internal.ControllerRunner;
 import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
 
+/**
+ * @author Gregory Van den Borre
+ */
 class JamPadControllerRunner extends ControllerRunner {
 
     private final int id;
