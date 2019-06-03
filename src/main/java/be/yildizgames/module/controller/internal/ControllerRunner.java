@@ -30,15 +30,13 @@ import be.yildizgames.module.controller.Controller;
 import be.yildizgames.module.controller.ControllerCurrentState;
 import be.yildizgames.module.controller.ControllerListener;
 import be.yildizgames.module.controller.ControllerMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Gregory Van den Borre
  */
 public abstract class ControllerRunner implements Runnable, Controller {
 
-    private final Logger logger = LoggerFactory.getLogger(ControllerRunner.class);
+    private final System.Logger logger = System.getLogger(ControllerRunner.class.getName());
 
     private final Thread thread;
 
@@ -89,7 +87,7 @@ public abstract class ControllerRunner implements Runnable, Controller {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    this.logger.warn("Interruption", e);
+                    this.logger.log(System.Logger.Level.WARNING, "Interruption", e);
                     Thread.currentThread().interrupt();
                 }
             }
