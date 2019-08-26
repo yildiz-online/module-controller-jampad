@@ -25,4 +25,5 @@ module be.yildizgames.module.controller.jampad {
     requires Jamepad;
 
     exports be.yildizgames.module.controller;
+
 }
