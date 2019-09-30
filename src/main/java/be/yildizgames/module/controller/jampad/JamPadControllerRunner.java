@@ -99,6 +99,27 @@ class JamPadControllerRunner extends ControllerRunner {
     }
 
     @Override
+    protected boolean leftStickLeft() {
+        return currState.leftStickY < 0;
+    }
+
+    @Override
+    protected boolean leftStickRight() {
+        return currState.leftStickY > 0;
+    }
+
+    @Override
+    protected boolean leftStickUp() {
+        return currState.leftStickX < 0;
+    }
+
+    @Override
+    protected boolean leftStickDown() {
+        return currState.leftStickX > 0;
+    }
+
+
+    @Override
     public boolean isConnected() {
         this.currState = this.controllerManager.getState(id);
         return currState.isConnected;

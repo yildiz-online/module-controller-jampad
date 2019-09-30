@@ -138,6 +138,11 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
 
     private boolean button4;
 
+    private boolean leftStickLeft;
+    private boolean leftStickRight;
+    private boolean leftStickUp;
+    private boolean leftStickDown;
+
     ControllerCurrentStateContainer() {
         super();
     }
@@ -242,6 +247,34 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
         if(this.padDown != active) {
             this.padDown = active;
             this.listeners.forEach(active ? ControllerListener::controllerPressDown : ControllerListener::controllerReleaseDown);
+        }
+    }
+
+    final void leftStickLeft(boolean active) {
+        if(this.leftStickLeft != active) {
+            this.leftStickLeft = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickLeft : ControllerListener::controllerReleaseLeftStickLeft);
+        }
+    }
+
+    final void leftStickRight(boolean active) {
+        if(this.leftStickRight != active) {
+            this.leftStickRight = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickRight : ControllerListener::controllerReleaseLeftStickRight);
+        }
+    }
+
+    final void leftStickUp(boolean active) {
+        if(this.leftStickUp != active) {
+            this.leftStickUp = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickUp : ControllerListener::controllerReleaseLeftStickUp);
+        }
+    }
+
+    final void leftStickDown(boolean active) {
+        if(this.leftStickDown != active) {
+            this.leftStickDown = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickDown : ControllerListener::controllerReleaseLeftStickDown);
         }
     }
 

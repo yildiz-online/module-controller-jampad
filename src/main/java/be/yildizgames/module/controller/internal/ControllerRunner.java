@@ -118,6 +118,14 @@ public abstract class ControllerRunner implements Runnable, Controller {
      */
     protected abstract boolean left();
 
+    protected abstract boolean leftStickLeft();
+
+    protected abstract boolean leftStickRight();
+
+    protected abstract boolean leftStickUp();
+
+    protected abstract boolean leftStickDown();
+
     /**
      * Get the status of the button 1.
      * @return true if the button 1 is pressed, false otherwise.
@@ -170,6 +178,10 @@ public abstract class ControllerRunner implements Runnable, Controller {
             this.stateContainer.padRight(right());
             this.stateContainer.padUp(up());
             this.stateContainer.padDown(down());
+            this.stateContainer.leftStickLeft(leftStickLeft());
+            this.stateContainer.leftStickRight(leftStickRight());
+            this.stateContainer.leftStickUp(leftStickUp());
+            this.stateContainer.leftStickDown(leftStickDown());
         }
         return connected;
     }

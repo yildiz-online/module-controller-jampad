@@ -142,4 +142,28 @@ public interface ControllerListener {
      * Triggered when the controller dpad down is released.
      */
     default void controllerReleaseDown() {}
+
+    default void controllerPressLeftStickLeft() {
+    }
+
+    default void controllerReleaseLeftStickLeft() {
+    }
+
+    default void controllerPressLeftStickRight() {
+    }
+
+    default void controllerReleaseLeftStickRight() {
+    }
+
+    default void controllerPressLeftStickUp() {
+    }
+
+    default void controllerReleaseLeftStickUp() {
+    }
+
+    default void controllerPressLeftStickDown() {
+    }
+
+    default void controllerReleaseLeftStickDown() {
+    }
 }
