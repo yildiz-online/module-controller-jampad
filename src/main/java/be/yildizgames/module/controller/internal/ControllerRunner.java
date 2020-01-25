@@ -30,6 +30,7 @@ import be.yildizgames.module.controller.Controller;
 import be.yildizgames.module.controller.ControllerCurrentState;
 import be.yildizgames.module.controller.ControllerListener;
 import be.yildizgames.module.controller.ControllerMapper;
+import be.yildizgames.module.controller.ThreadRunner;
 
 /**
  * @author Gregory Van den Borre
@@ -37,8 +38,6 @@ import be.yildizgames.module.controller.ControllerMapper;
 public abstract class ControllerRunner implements Runnable, Controller {
 
     private final System.Logger logger = System.getLogger(ControllerRunner.class.getName());
-
-    private final Thread thread;
 
     private ControllerMapper mapper = new DefaultControllerMapper();
 
@@ -51,7 +50,6 @@ public abstract class ControllerRunner implements Runnable, Controller {
 
     protected ControllerRunner() {
         super();
-        this.thread = new Thread(this);
     }
 
     @Override
@@ -67,7 +65,13 @@ public abstract class ControllerRunner implements Runnable, Controller {
     @Override
     public final void use() {
         this.use = true;
-        this.thread.start();
+        new Thread(this).start();
+    }
+
+    @Override
+    public final void use(ThreadRunner runner) {
+        this.use = true;
+        runner.start(this);
     }
 
     @Override

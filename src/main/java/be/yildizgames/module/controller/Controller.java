@@ -51,6 +51,8 @@ public interface Controller {
      */
     void use();
 
+    void use(ThreadRunner runner);
+
     /**
      * Map the buttons if a change is required.
      * @param mapper Button mapper.
