@@ -71,4 +71,6 @@ public interface Controller {
      */
     boolean isConnected();
 
+    ControllerModel getModel();
+
 }
