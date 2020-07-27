@@ -29,6 +29,17 @@ public class Manual {
             public void controllerPressLeft() {
                 System.out.println("LEFT");
             }
+
+            @Override
+            public void controllerPressStart() {
+                System.out.println("START");
+            }
+
+            @Override
+            public void controllerPressSelect() {
+                System.out.println("SELECT");
+            }
+
         });
     }
 

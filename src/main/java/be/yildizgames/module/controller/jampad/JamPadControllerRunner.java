@@ -73,12 +73,12 @@ class JamPadControllerRunner extends ControllerRunner {
 
     @Override
     protected boolean buttonStart() {
-        return false;
+        return this.currState.start;
     }
 
     @Override
     protected boolean buttonSelect() {
-        return false;
+        return this.currState.back;
     }
 
     @Override
