@@ -102,23 +102,13 @@ class JamPadControllerRunner extends ControllerRunner {
     }
 
     @Override
-    protected boolean leftStickLeft() {
-        return currState.leftStickY < 0.1;
+    protected final float leftStickVertical() {
+        return currState.leftStickY;
     }
 
     @Override
-    protected boolean leftStickRight() {
-        return currState.leftStickY > 0.1;
-    }
-
-    @Override
-    protected boolean leftStickUp() {
-        return currState.leftStickX < 0.1;
-    }
-
-    @Override
-    protected boolean leftStickDown() {
-        return currState.leftStickX > 0.1;
+    protected final float leftStickHorizontal() {
+        return currState.leftStickX;
     }
 
 

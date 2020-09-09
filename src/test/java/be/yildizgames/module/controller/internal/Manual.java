@@ -40,6 +40,25 @@ public class Manual {
                 System.out.println("SELECT");
             }
 
+            @Override
+            public void controllerPressLeftStickDown() {
+                System.out.println("LEFT STICK DOWN");
+            }
+
+            @Override
+            public void controllerPressLeftStickUp() {
+                System.out.println("LEFT STICK UP");
+            }
+
+            @Override
+            public void controllerPressLeftStickLeft() {
+                System.out.println("LEFT STICK LEFT");
+            }
+
+            @Override
+            public void controllerPressLeftStickRight() {
+                System.out.println("LEFT STICK RIGHT");
+            }
         });
     }
 

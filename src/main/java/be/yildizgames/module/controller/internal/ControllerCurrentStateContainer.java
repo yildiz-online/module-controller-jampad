@@ -46,13 +46,9 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
 
     private boolean connected;
 
-    private float leftStickX;
+    private double leftStickX;
 
-    private float leftStickY;
-
-    private float rightStickX;
-
-    private float rightStickY;
+    private double leftStickY;
 
     /**
      * The angle of the left stick (for reference, 0 is right, 90 is up, 180 is left, 270 is down)
@@ -138,10 +134,10 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
 
     private boolean button4;
 
-    private boolean leftStickLeft;
-    private boolean leftStickRight;
-    private boolean leftStickUp;
-    private boolean leftStickDown;
+    private boolean leftStickLeft = false;
+    private boolean leftStickRight = false;
+    private boolean leftStickUp = false;
+    private boolean leftStickDown = false;
 
     ControllerCurrentStateContainer() {
         super();
@@ -250,31 +246,37 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
         }
     }
 
-    final void leftStickLeft(boolean active) {
-        if(this.leftStickLeft != active) {
-            this.leftStickLeft = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickLeft : ControllerListener::controllerReleaseLeftStickLeft);
+    final void leftStickHorizontal(float x) {
+        if(!leftStickRight && x > 0.5f) {
+            this.listeners.forEach(ControllerListener::controllerPressLeftStickRight);
+            leftStickRight = true;
+            leftStickLeft = false;
+        }
+        if(!leftStickLeft && x < -0.5f) {
+            this.listeners.forEach(ControllerListener::controllerPressLeftStickLeft);
+            leftStickRight = false;
+            leftStickLeft = true;
+        }
+        if(x < 0.5f && x > -0.5f) {
+            leftStickRight = false;
+            leftStickLeft = false;
         }
     }
 
-    final void leftStickRight(boolean active) {
-        if(this.leftStickRight != active) {
-            this.leftStickRight = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickRight : ControllerListener::controllerReleaseLeftStickRight);
+    final void leftStickVertical(float y) {
+        if(!leftStickUp && y > 0.5f) {
+            this.listeners.forEach(ControllerListener::controllerPressLeftStickUp);
+            leftStickUp = true;
+            leftStickDown = false;
         }
-    }
-
-    final void leftStickUp(boolean active) {
-        if(this.leftStickUp != active) {
-            this.leftStickUp = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickUp : ControllerListener::controllerReleaseLeftStickUp);
+        if(!leftStickDown && y < -0.5f) {
+            this.listeners.forEach(ControllerListener::controllerPressLeftStickDown);
+            leftStickUp = false;
+            leftStickDown = true;
         }
-    }
-
-    final void leftStickDown(boolean active) {
-        if(this.leftStickDown != active) {
-            this.leftStickDown = active;
-            this.listeners.forEach(active ? ControllerListener::controllerPressLeftStickDown : ControllerListener::controllerReleaseLeftStickDown);
+        if(y < 0.5f && y > -0.5f) {
+            leftStickUp = false;
+            leftStickDown = false;
         }
     }
 
