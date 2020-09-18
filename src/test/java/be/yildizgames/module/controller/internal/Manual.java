@@ -25,6 +25,27 @@ public class Manual {
         var engine = new JampadControllerManager();
         engine.getController1().use();
         engine.getController1().addListener(new ControllerListener() {
+
+            @Override
+            public void controllerPressL1() {
+                System.out.println("L1");
+            }
+
+            @Override
+            public void controllerPressR1() {
+                System.out.println("R1");
+            }
+
+            @Override
+            public void controllerPressL2() {
+                System.out.println("L2");
+            }
+
+            @Override
+            public void controllerPressR2() {
+                System.out.println("R2");
+            }
+
             @Override
             public void controllerPressLeft() {
                 System.out.println("LEFT");
@@ -53,6 +74,26 @@ public class Manual {
             @Override
             public void controllerPressLeftStickLeft() {
                 System.out.println("LEFT STICK LEFT");
+            }
+
+            @Override
+            public void controllerPress1() {
+                System.out.println("A");
+            }
+
+            @Override
+            public void controllerPress2() {
+                System.out.println("B");
+            }
+
+            @Override
+            public void controllerPress3() {
+                System.out.println("X");
+            }
+
+            @Override
+            public void controllerPress4() {
+                System.out.println("Y");
             }
 
             @Override

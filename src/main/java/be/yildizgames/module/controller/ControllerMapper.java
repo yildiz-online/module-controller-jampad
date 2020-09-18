@@ -49,6 +49,14 @@ public interface ControllerMapper {
         return ControllerInput.BUTTON4;
     }
 
+    default ControllerInput buttonL1() {return ControllerInput.BUTTON_L1;}
+
+    default ControllerInput buttonR1() {return ControllerInput.BUTTON_R1;}
+
+    default ControllerInput buttonL2() {return ControllerInput.BUTTON_L2;}
+
+    default ControllerInput buttonR2() {return ControllerInput.BUTTON_R2;}
+
     default ControllerInput buttonStart() {
         return ControllerInput.START;
     }

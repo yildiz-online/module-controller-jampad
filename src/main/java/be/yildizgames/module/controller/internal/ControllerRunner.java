@@ -150,6 +150,14 @@ public abstract class ControllerRunner implements Runnable, Controller {
      */
     protected abstract boolean button4();
 
+    protected abstract boolean buttonL1();
+
+    protected abstract boolean buttonL2();
+
+    protected abstract boolean buttonR1();
+
+    protected abstract boolean buttonR2();
+
     /**
      * Get the status of the button start.
      * @return true if the button start is pressed, false otherwise.
@@ -170,6 +178,11 @@ public abstract class ControllerRunner implements Runnable, Controller {
             this.stateContainer.button(this.mapper.button2(), button2());
             this.stateContainer.button(this.mapper.button3(), button3());
             this.stateContainer.button(this.mapper.button4(), button4());
+
+            this.stateContainer.button(this.mapper.buttonL1(), buttonL1());
+            this.stateContainer.button(this.mapper.buttonR1(), buttonR1());
+            this.stateContainer.button(this.mapper.buttonL2(), buttonL2());
+            this.stateContainer.button(this.mapper.buttonR2(), buttonR2());
 
             this.stateContainer.button(this.mapper.buttonStart(), buttonStart());
             this.stateContainer.button(this.mapper.buttonSelect(), buttonSelect());

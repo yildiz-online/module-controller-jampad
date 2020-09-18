@@ -72,6 +72,26 @@ class JamPadControllerRunner extends ControllerRunner {
     }
 
     @Override
+    protected boolean buttonL1() {
+        return currState.lb;
+    }
+
+    @Override
+    protected boolean buttonL2() {
+        return currState.leftTrigger > 0;
+    }
+
+    @Override
+    protected boolean buttonR1() {
+        return currState.rb;
+    }
+
+    @Override
+    protected boolean buttonR2() {
+        return currState.rightTrigger > 0;
+    }
+
+    @Override
     protected boolean buttonStart() {
         return this.currState.start;
     }

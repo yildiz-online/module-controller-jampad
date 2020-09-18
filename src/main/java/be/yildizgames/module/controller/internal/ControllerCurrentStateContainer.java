@@ -138,6 +138,10 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
     private boolean leftStickRight = false;
     private boolean leftStickUp = false;
     private boolean leftStickDown = false;
+    private boolean buttonL1 = false;
+    private boolean buttonR1 = false;
+    private boolean buttonL2 = false;
+    private boolean buttonR2 = false;
 
     ControllerCurrentStateContainer() {
         super();
@@ -213,6 +217,14 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
             case BUTTON3: this.button3(active);
                 break;
             case BUTTON4: this.button4(active);
+                break;
+            case BUTTON_L1: this.buttonL1(active);
+            break;
+            case BUTTON_L2: this.buttonL2(active);
+            break;
+            case BUTTON_R1: this.buttonR1(active);
+                break;
+            case BUTTON_R2: this.buttonR2(active);
                 break;
             default: break;
         }
@@ -323,6 +335,34 @@ class ControllerCurrentStateContainer implements ControllerCurrentState {
         if(this.button4 != active) {
             this.button4 = active;
             this.listeners.forEach(active ? ControllerListener::controllerPress4 : ControllerListener::controllerRelease4);
+        }
+    }
+
+    private void buttonL1(boolean active) {
+        if(this.buttonL1 != active) {
+            this.buttonL1 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressL1 : ControllerListener::controllerReleaseL1);
+        }
+    }
+
+    private void buttonL2(boolean active) {
+        if(this.buttonL2 != active) {
+            this.buttonL2 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressL2 : ControllerListener::controllerReleaseL2);
+        }
+    }
+
+    private void buttonR1(boolean active) {
+        if(this.buttonR1 != active) {
+            this.buttonR1 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressR1 : ControllerListener::controllerReleaseR1);
+        }
+    }
+
+    private void buttonR2(boolean active) {
+        if(this.buttonR2 != active) {
+            this.buttonR2 = active;
+            this.listeners.forEach(active ? ControllerListener::controllerPressR2 : ControllerListener::controllerReleaseR2);
         }
     }
 }

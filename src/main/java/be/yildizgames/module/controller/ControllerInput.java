@@ -53,6 +53,14 @@ public enum ControllerInput {
      */
     BUTTON4,
 
+    BUTTON_L1,
+
+    BUTTON_R1,
+
+    BUTTON_L2,
+
+    BUTTON_R2,
+
     /**
      * Button start.
      */
@@ -61,5 +69,5 @@ public enum ControllerInput {
     /**
      * Button select.
      */
-    SELECT
+    SELECT;
 }

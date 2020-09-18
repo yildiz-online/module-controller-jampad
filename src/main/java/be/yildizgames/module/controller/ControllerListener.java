@@ -84,6 +84,46 @@ public interface ControllerListener {
     default void controllerRelease4() {}
 
     /**
+     * Triggered when the controller button L1 is pressed.
+     */
+    default void controllerPressL1() {}
+
+    /**
+     * Triggered when the controller button L1 is released.
+     */
+    default void controllerReleaseL1() {}
+
+    /**
+     * Triggered when the controller button R1 is pressed.
+     */
+    default void controllerPressR1() {}
+
+    /**
+     * Triggered when the controller button R1 is released.
+     */
+    default void controllerReleaseR1() {}
+
+    /**
+     * Triggered when the controller button L2 is pressed.
+     */
+    default void controllerPressL2() {}
+
+    /**
+     * Triggered when the controller button R2 is released.
+     */
+    default void controllerReleaseR2() {}
+
+    /**
+     * Triggered when the controller button R2 is pressed.
+     */
+    default void controllerPressR2() {}
+
+    /**
+     * Triggered when the controller button L2 is released.
+     */
+    default void controllerReleaseL2() {}
+
+    /**
      * Triggered when the controller button start is pressed.
      */
     default void controllerPressStart() {}
