@@ -1,0 +1,10 @@
+sudo apt-get install libSDL2-dev
+sudo apt-get install libdrm-dev
+sudo apt-get install libgbm-dev
+
+TODO
+(add drm & gbm statically as not present by defaut?)
+
+g++ -c -I/usr/include/SDL2 -Wall -Werror -fpic jamepad.cpp -lSDL2 -O2
+
+g++ -shared -o libjamepadArm64.so jamepad.o /usr/lib/aarch64-linux-gnu/libSDL2.a -lSDL2 -Wl,--no-undefined -lm -ldl -lasound -lm -ldl -lpthread -lpulse-simple -lpulse -lX11 -lXext -lXcursor -lXinerama -lXi -lXrandr -lXss -lXxf86vm -ldrm -lgbm -lwayland-egl -lwayland-client -lwayland-cursor -lxkbcommon -lpthread -lrt

@@ -30,6 +30,10 @@ import be.yildizgames.module.controller.Controller;
 import be.yildizgames.module.controller.ControllerEngine;
 import com.studiohartman.jamepad.ControllerManager;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 /**
  * @author Gregory Van den Borre
  */
@@ -37,14 +41,35 @@ public class JampadControllerManager implements ControllerEngine {
 
     private final Controller[] controllers = new JamPadControllerRunner[4];
 
-    private final ControllerManager controllerManager;
-
     public JampadControllerManager() {
         super();
-        this.controllerManager = new ControllerManager();
-        this.controllerManager.initSDLGamepad();
+        loadForArm64();
+        var controllerManager = new ControllerManager();
+        controllerManager.initSDLGamepad();
         for(int i = 0; i < controllers.length; i++) {
             controllers[i] = new JamPadControllerRunner(i, controllerManager);
+        }
+    }
+
+    /**
+     * 64 bits arm lib does not exists in the jamepad jar, so load the added one in this library.
+     */
+    private static void loadForArm64() {
+        var arch = System.getProperty("os.arch");
+        var isARM = arch.startsWith("arm") || arch.startsWith("aarch64");
+        var is64Bit = arch.contains("64") || arch.startsWith("armv8");
+        var libName = "libjamepadArm64.so";
+        if(is64Bit && isARM && Files.notExists(Path.of(libName))) {
+            try {
+                var url = JampadControllerManager.class.getResource("/" + libName);
+                File nativeLibFile = new File("libjamepadArm64.so");
+                try (var in = url.openStream()) {
+                    Files.copy(in, nativeLibFile.toPath());
+                }
+                System.load(nativeLibFile.getAbsolutePath());
+            } catch (Exception e) {
+                throw new IllegalStateException(e);
+            }
         }
     }
 
