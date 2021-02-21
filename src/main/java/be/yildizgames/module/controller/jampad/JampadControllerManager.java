@@ -59,12 +59,14 @@ public class JampadControllerManager implements ControllerEngine {
         var isARM = arch.startsWith("arm") || arch.startsWith("aarch64");
         var is64Bit = arch.contains("64") || arch.startsWith("armv8");
         var libName = "libjamepadArm64.so";
-        if(is64Bit && isARM && Files.notExists(Path.of(libName))) {
+        if(is64Bit && isARM) {
             try {
                 var url = JampadControllerManager.class.getResource("/" + libName);
                 File nativeLibFile = new File("libjamepadArm64.so");
-                try (var in = url.openStream()) {
-                    Files.copy(in, nativeLibFile.toPath());
+                if(Files.notExists(Path.of(libName))) {
+                    try (var in = url.openStream()) {
+                        Files.copy(in, nativeLibFile.toPath());
+                    }
                 }
                 System.load(nativeLibFile.getAbsolutePath());
             } catch (Exception e) {
