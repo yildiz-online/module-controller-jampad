@@ -87,7 +87,14 @@ public abstract class ControllerRunner implements Runnable, Controller {
     @Override
     public final void run() {
         while(use) {
-            if(!updateIfConnected()) {
+            if(updateIfConnected()) {
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    this.logger.log(System.Logger.Level.WARNING, "Interruption", e);
+                    Thread.currentThread().interrupt();
+                }
+            } else {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
